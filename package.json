@@ -1,0 +1,12 @@
+{
+  "name": "mobile_printer_driver",
+  "version": "1.0.0",
+  "description": "Mobile Thermal Printer Driver for ERPNext - Bluetooth and USB OTG support",
+  "scripts": {
+    "build": "echo 'No build step required'",
+    "postinstall": "echo 'mobile_printer_driver installed'"
+  },
+  "devDependencies": {},
+  "dependencies": {},
+  "license": "MIT"
+}
