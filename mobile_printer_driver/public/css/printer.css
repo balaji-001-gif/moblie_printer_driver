@@ -1,0 +1,262 @@
+/* =========================================================
+   Mobile Printer Driver - Styles
+   mobile_printer_driver/public/css/printer.css
+   ========================================================= */
+
+/* ----------------------------------------------------------
+   Floating Print Button
+   ---------------------------------------------------------- */
+#mpd-float-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 20px;
+    z-index: 9990;
+    background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+    color: #fff;
+    border-radius: 50px;
+    padding: 14px 20px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 4px 20px rgba(99, 102, 241, 0.5);
+    user-select: none;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+#mpd-float-btn:active {
+    transform: scale(0.95);
+}
+
+#mpd-float-btn:hover {
+    box-shadow: 0 6px 28px rgba(99, 102, 241, 0.65);
+    transform: translateY(-2px);
+}
+
+.mpd-icon { font-size: 18px; }
+
+@media (max-width: 600px) {
+    #mpd-float-btn { bottom: 16px; right: 16px; padding: 13px 16px; font-size: 14px; }
+}
+
+/* ----------------------------------------------------------
+   Modal Overlay
+   ---------------------------------------------------------- */
+#mpd-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(17, 17, 27, 0.72);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    animation: mpd-fade-in 0.2s ease;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+@keyframes mpd-fade-in {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* ----------------------------------------------------------
+   Modal Card (bottom sheet on mobile)
+   ---------------------------------------------------------- */
+.mpd-modal {
+    background: #1e1e2e;
+    color: #cdd6f4;
+    border-radius: 24px 24px 0 0;
+    padding: 24px 20px 36px;
+    width: 100%;
+    max-width: 480px;
+    box-shadow: 0 -8px 40px rgba(0,0,0,0.45);
+    animation: mpd-slide-up 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+@keyframes mpd-slide-up {
+    from { transform: translateY(100%); opacity: 0; }
+    to   { transform: translateY(0);   opacity: 1; }
+}
+
+/* ----------------------------------------------------------
+   Modal Header
+   ---------------------------------------------------------- */
+.mpd-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.mpd-modal-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #cba6f7;
+    letter-spacing: 0.3px;
+}
+
+.mpd-close-btn {
+    background: #313244;
+    border: none;
+    color: #cdd6f4;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s;
+}
+
+.mpd-close-btn:hover { background: #45475a; }
+
+/* ----------------------------------------------------------
+   Status Bar
+   ---------------------------------------------------------- */
+.mpd-status-bar {
+    background: #181825;
+    border-radius: 10px;
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 18px;
+    font-size: 13px;
+    border: 1px solid #313244;
+}
+
+.mpd-status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    background: #6c7086;
+    transition: background 0.3s;
+}
+
+.mpd-status-dot.connected    { background: #a6e3a1; box-shadow: 0 0 8px #a6e3a1aa; }
+.mpd-status-dot.disconnected { background: #f38ba8; }
+.mpd-status-dot.connecting   { background: #fab387; animation: mpd-pulse 1s infinite; }
+
+@keyframes mpd-pulse {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.3; }
+}
+
+/* ----------------------------------------------------------
+   Section Title
+   ---------------------------------------------------------- */
+.mpd-section-title {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #6c7086;
+    margin-bottom: 8px;
+}
+
+/* ----------------------------------------------------------
+   Paper Width Toggle
+   ---------------------------------------------------------- */
+.mpd-toggle-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 18px;
+}
+
+.mpd-toggle-btn {
+    flex: 1;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1.5px solid #313244;
+    background: #181825;
+    color: #cdd6f4;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.mpd-toggle-btn.active {
+    border-color: #cba6f7;
+    background: #1e1e2e;
+    color: #cba6f7;
+    box-shadow: 0 0 12px rgba(203,166,247,0.25);
+}
+
+/* ----------------------------------------------------------
+   Connection Buttons
+   ---------------------------------------------------------- */
+.mpd-btn-row {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.mpd-action-btn {
+    flex: 1;
+    padding: 14px 10px;
+    border-radius: 14px;
+    border: 1.5px solid #313244;
+    background: #181825;
+    color: #cdd6f4;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    transition: all 0.15s;
+}
+
+.mpd-action-btn small {
+    font-size: 10px;
+    font-weight: 400;
+    color: #6c7086;
+    word-break: break-all;
+    text-align: center;
+}
+
+.mpd-bt-btn:hover  { border-color: #89b4fa; background: #1e1e2e; color: #89b4fa; }
+.mpd-usb-btn:hover { border-color: #a6e3a1; background: #1e1e2e; color: #a6e3a1; }
+
+.mpd-action-btn:active { transform: scale(0.97); }
+
+/* ----------------------------------------------------------
+   Print Button
+   ---------------------------------------------------------- */
+.mpd-print-btn {
+    width: 100%;
+    padding: 16px;
+    border-radius: 14px;
+    border: none;
+    background: linear-gradient(135deg, #cba6f7 0%, #89b4fa 100%);
+    color: #1e1e2e;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-bottom: 14px;
+    transition: all 0.15s;
+    letter-spacing: 0.2px;
+}
+
+.mpd-print-btn:hover  { opacity: 0.9; transform: translateY(-1px); }
+.mpd-print-btn:active { transform: scale(0.98); }
+.mpd-print-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+/* ----------------------------------------------------------
+   Footer
+   ---------------------------------------------------------- */
+.mpd-footer {
+    text-align: center;
+    font-size: 10px;
+    color: #45475a;
+}

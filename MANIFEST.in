@@ -1,0 +1,2 @@
+include MANIFEST.in
+recursive-include mobile_printer_driver *.json *.js *.css *.html *.md *.py *.txt

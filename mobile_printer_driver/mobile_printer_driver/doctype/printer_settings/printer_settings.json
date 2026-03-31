@@ -1,0 +1,87 @@
+{
+ "actions": [],
+ "creation": "2026-03-31 12:00:00",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "paper_width",
+  "default_connection",
+  "column_break_1",
+  "bt_device_name",
+  "print_format",
+  "section_break_info",
+  "info_html"
+ ],
+ "fields": [
+  {
+   "fieldname": "paper_width",
+   "fieldtype": "Select",
+   "label": "Paper Width",
+   "options": "58mm\n80mm",
+   "default": "58mm",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "default_connection",
+   "fieldtype": "Select",
+   "label": "Default Connection Type",
+   "options": "Bluetooth\nUSB",
+   "default": "Bluetooth",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "bt_device_name",
+   "fieldtype": "Data",
+   "label": "Last Bluetooth Device Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "print_format",
+   "fieldtype": "Link",
+   "label": "Default Print Format",
+   "options": "Print Format"
+  },
+  {
+   "fieldname": "section_break_info",
+   "fieldtype": "Section Break",
+   "label": "How to Use"
+  },
+  {
+   "fieldname": "info_html",
+   "fieldtype": "HTML",
+   "label": "Info",
+   "options": "<div style=\"padding:12px;background:#f4f5f7;border-radius:6px;font-size:13px;\">\n<b>📱 Mobile Thermal Printing</b><br><br>\n<ol>\n<li>Open any <b>Sales Invoice</b> or <b>POS Invoice</b> on your mobile browser.</li>\n<li>Tap the floating <b>🖨 Print</b> button at the bottom-right corner.</li>\n<li>Choose <b>Bluetooth</b> or <b>USB OTG</b> and connect your printer.</li>\n<li>Tap <b>Print Now</b> — receipt prints instantly!</li>\n</ol>\n<br>\n<b>Requirements:</b><br>\n• Chrome on Android (Bluetooth) or Chrome with USB OTG cable<br>\n• ERPNext must be served over <b>HTTPS</b><br>\n• Supported printers: Xprinter, Epson TM-T20, Bixolon, Rongta, generic ESC/POS\n</div>"
+  }
+ ],
+ "icon": "printer",
+ "is_single": 1,
+ "issingle": 1,
+ "modified": "2026-03-31 12:00:00",
+ "modified_by": "Administrator",
+ "module": "Mobile Printer Driver",
+ "name": "Printer Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "All",
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 0
+}

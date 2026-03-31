@@ -1,0 +1,149 @@
+<!-- 
+    Thermal Print Format - 58mm / 80mm
+    mobile_printer_driver: Thermal POS Receipt
+    Used as a Frappe Print Format for web preview / PDF
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+        font-family: 'Share Tech Mono', 'Courier New', monospace;
+        font-size: 12px;
+        width: 58mm;
+        max-width: 58mm;
+        padding: 4mm 3mm;
+        color: #111;
+        background: #fff;
+    }
+
+    .center { text-align: center; }
+    .right  { text-align: right; }
+    .bold   { font-weight: bold; }
+    .big    { font-size: 16px; }
+    .small  { font-size: 10px; }
+
+    .divider {
+        border-top: 1px dashed #555;
+        margin: 4px 0;
+    }
+
+    .company-name {
+        font-size: 15px;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .two-col {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .item-name {
+        font-size: 11px;
+        word-break: break-word;
+    }
+
+    .total-row {
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .footer-text {
+        font-size: 10px;
+        letter-spacing: 0.5px;
+    }
+</style>
+</head>
+<body>
+
+<!-- Company Header -->
+<div class="center">
+    <div class="company-name">{{ doc.company }}</div>
+    {% if doc.company_address %}
+    <div class="small">{{ doc.company_address }}</div>
+    {% endif %}
+</div>
+
+<div class="divider"></div>
+
+<!-- Document Info -->
+<div class="two-col"><span>Invoice:</span><span>{{ doc.name }}</span></div>
+<div class="two-col"><span>Date:</span><span>{{ doc.posting_date or doc.transaction_date }}</span></div>
+{% if doc.customer_name %}
+<div class="two-col"><span>Customer:</span><span>{{ doc.customer_name }}</span></div>
+{% endif %}
+{% if doc.mobile_no %}
+<div class="two-col"><span>Mobile:</span><span>{{ doc.mobile_no }}</span></div>
+{% endif %}
+
+<div class="divider"></div>
+
+<!-- Item Header -->
+<div class="two-col bold">
+    <span>Item</span>
+    <span>Amt</span>
+</div>
+<div class="divider"></div>
+
+<!-- Items -->
+{% for item in doc.items %}
+<div class="item-name">{{ item.item_name or item.item_code }}</div>
+<div class="two-col small">
+    <span>{{ item.qty | int }} x {{ item.rate | round(2) }}</span>
+    <span>{{ item.amount | round(2) }}</span>
+</div>
+{% endfor %}
+
+<div class="divider"></div>
+
+<!-- Taxes -->
+{% if doc.taxes %}
+{% for tax in doc.taxes %}
+<div class="two-col small">
+    <span>{{ tax.description }}</span>
+    <span>{{ tax.tax_amount | round(2) }}</span>
+</div>
+{% endfor %}
+<div class="divider"></div>
+{% endif %}
+
+<!-- Totals -->
+{% if doc.net_total %}
+<div class="two-col small"><span>Net Total:</span><span>{{ doc.net_total | round(2) }}</span></div>
+{% endif %}
+{% if doc.total_taxes_and_charges %}
+<div class="two-col small"><span>Tax:</span><span>{{ doc.total_taxes_and_charges | round(2) }}</span></div>
+{% endif %}
+
+<div class="two-col total-row">
+    <span>TOTAL</span>
+    <span>{{ (doc.rounded_total or doc.grand_total) | round(2) }}</span>
+</div>
+
+{% if doc.mode_of_payment %}
+<div class="divider"></div>
+<div class="two-col small"><span>Payment:</span><span>{{ doc.mode_of_payment }}</span></div>
+{% endif %}
+{% if doc.paid_amount %}
+<div class="two-col small"><span>Paid:</span><span>{{ doc.paid_amount | round(2) }}</span></div>
+{% endif %}
+
+<div class="divider"></div>
+
+<!-- Footer -->
+<div class="center footer-text">
+    <div>Thank You For Your Business!</div>
+    <div>Please Visit Again</div>
+    <br>
+    <div>*** {{ doc.name }} ***</div>
+</div>
+
+</body>
+</html>
