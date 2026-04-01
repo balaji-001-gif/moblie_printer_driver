@@ -51,19 +51,13 @@
             try {
                 console.log("[MPD-BT] Requesting Bluetooth device...");
 
-                // Try filtered scan first; fall back to show all devices
-                try {
-                    this.device = await navigator.bluetooth.requestDevice({
-                        filters: PRINTER_SERVICE_UUIDS.map(uuid => ({ services: [uuid] })),
-                        optionalServices: PRINTER_SERVICE_UUIDS,
-                    });
-                } catch (filterErr) {
-                    console.warn("[MPD-BT] Filtered scan failed, trying acceptAllDevices...", filterErr);
-                    this.device = await navigator.bluetooth.requestDevice({
-                        acceptAllDevices: true,
-                        optionalServices: PRINTER_SERVICE_UUIDS,
-                    });
-                }
+                // IMPORTANT: Only ONE requestDevice() call allowed per user gesture.
+                // Calling it twice (filtered + fallback) causes SecurityError.
+                // Use acceptAllDevices:true so all printers appear in the picker.
+                this.device = await navigator.bluetooth.requestDevice({
+                    acceptAllDevices: true,
+                    optionalServices: PRINTER_SERVICE_UUIDS,
+                });
 
                 console.log("[MPD-BT] Device selected:", this.device.name);
 
