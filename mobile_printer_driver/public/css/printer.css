@@ -231,26 +231,70 @@
 .mpd-action-btn:active { transform: scale(0.97); }
 
 /* ----------------------------------------------------------
-   Print Button
+   Print Button (ESC/POS raw)
    ---------------------------------------------------------- */
 .mpd-print-btn {
     width: 100%;
-    padding: 16px;
+    padding: 13px;
     border-radius: 14px;
+    border: 1.5px solid #45475a;
+    background: #181825;
+    color: #cdd6f4;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 14px;
+    transition: all 0.15s;
+}
+
+.mpd-print-btn:hover  { border-color: #cba6f7; color: #cba6f7; }
+.mpd-print-btn:active { transform: scale(0.98); }
+.mpd-print-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+/* ----------------------------------------------------------
+   System Print Button (PRIMARY – works with ALL BT printers)
+   ---------------------------------------------------------- */
+.mpd-system-print-btn {
+    width: 100%;
+    padding: 18px 16px;
+    border-radius: 16px;
     border: none;
-    background: linear-gradient(135deg, #cba6f7 0%, #89b4fa 100%);
+    background: linear-gradient(135deg, #a6e3a1 0%, #94e2d5 100%);
     color: #1e1e2e;
-    font-size: 16px;
+    font-size: 17px;
     font-weight: 700;
     cursor: pointer;
     margin-bottom: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    box-shadow: 0 4px 20px rgba(166, 227, 161, 0.35);
     transition: all 0.15s;
     letter-spacing: 0.2px;
 }
 
-.mpd-print-btn:hover  { opacity: 0.9; transform: translateY(-1px); }
-.mpd-print-btn:active { transform: scale(0.98); }
-.mpd-print-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+.mpd-system-print-btn small {
+    font-size: 11px;
+    font-weight: 400;
+    color: #1e1e2e;
+    opacity: 0.75;
+}
+
+.mpd-system-print-btn:hover  { opacity: 0.92; transform: translateY(-2px); box-shadow: 0 6px 28px rgba(166,227,161,0.5); }
+.mpd-system-print-btn:active { transform: scale(0.98); }
+.mpd-system-print-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+/* ----------------------------------------------------------
+   Divider between primary and secondary print methods
+   ---------------------------------------------------------- */
+.mpd-divider-label {
+    text-align: center;
+    font-size: 11px;
+    color: #45475a;
+    margin: 4px 0 14px;
+    letter-spacing: 0.5px;
+}
 
 /* ----------------------------------------------------------
    Footer
@@ -259,4 +303,6 @@
     text-align: center;
     font-size: 10px;
     color: #45475a;
+    margin-top: 8px;
 }
+
